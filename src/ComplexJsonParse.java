@@ -1,3 +1,5 @@
+import org.testng.Assert;
+
 import files.payload;
 import io.restassured.path.json.JsonPath;
 
@@ -35,5 +37,14 @@ public class ComplexJsonParse {
 				break;
 			}
 		}
+		
+		//Verify all course price is equal to total purchase amount
+		int sum = 0;
+		for(int i = 0; i < count; i++) {
+			int course_price = js1.get("courses["+i+"].price");
+			int course_copies = js1.get("courses["+i+"].copies");
+			sum = sum + course_price * course_copies;
+		}
+		Assert.assertEquals(sum, totalAmount);
 	}
 }
