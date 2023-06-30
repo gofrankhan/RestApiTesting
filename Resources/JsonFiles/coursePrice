@@ -1,6 +1,6 @@
 {
   "dashboard": {
-    "purchaseAmount": 910,
+    "purchaseAmount": 1162,
     "website": "rahulshettyacademy.com"
   },
   "courses": [
@@ -18,6 +18,11 @@
       "title": "RPA",
       "price": 45,
       "copies": 10
+    },
+    {
+      "title": "Appium",
+      "price": 36,
+      "copies": 7
     }
   ]
 }
