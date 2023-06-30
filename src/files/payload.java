@@ -70,4 +70,14 @@ public class payload {
 				+ "  ]\n"
 				+ "}s";
 	}
+	
+	public static String addBook() {
+		String book = "{\n"
+				+ "    \"name\":\"Learn Selenium Automation with Java\",\n"
+				+ "    \"isbn\": \"selsdfe\",\n"
+				+ "    \"aisle\": \"029700\",\n"
+				+ "    \"author\": \"John Foe\"\n"
+				+ "}";
+		return book;
+	} 
 }
