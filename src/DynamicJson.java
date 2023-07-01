@@ -14,7 +14,7 @@ public class DynamicJson {
 	public void AddBook() {
 		RestAssured.baseURI = "http://216.10.245.166";
 		String response = given().header("Content-Type", "application/json")
-		.body(payload.addBook())
+		.body(payload.addBook("aisle", "isbn"))
 		.when().log().all()
 		.post("/Library/Addbook.php")
 		.then().assertThat().statusCode(200)

@@ -71,11 +71,11 @@ public class payload {
 				+ "}s";
 	}
 	
-	public static String addBook() {
+	public static String addBook(String isbn, String aisle) {
 		String book = "{\n"
 				+ "    \"name\":\"Learn Selenium Automation with Java\",\n"
-				+ "    \"isbn\": \"selsdfe\",\n"
-				+ "    \"aisle\": \"029700\",\n"
+				+ "    \"isbn\": \""+isbn+"\",\n"
+				+ "    \"aisle\": \""+aisle+"\",\n"
 				+ "    \"author\": \"John Foe\"\n"
 				+ "}";
 		return book;
