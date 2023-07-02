@@ -4,6 +4,10 @@ import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.testng.Assert;
 
 import files.payload;
@@ -17,6 +21,7 @@ public class Basics {
 			//Given - all input details
 			//when -  Submit the API, resources, http methods
 			// Then - validate the response
+			// Content of the file to String, content of the file can be converted to Byte-> Byte data to String
 		
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		String response = given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
@@ -27,12 +32,31 @@ public class Basics {
 			.body("scope", equalTo("APP"))
 			.header("Server", "Apache/2.4.52 (Ubuntu)")
 			.extract().response().asString();
-	
+		
+		try {
+			String response1 = given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
+			.body(new String(Files.readAllBytes(Paths.get("/Volumes/Macintosh HD - Data/Courses/RestAssured/AddPlace.json"))))
+			.when().post("maps/api/place/add/json")
+			.then().log().all()
+				.assertThat().statusCode(200)
+				.body("scope", equalTo("APP"))
+				.header("Server", "Apache/2.4.52 (Ubuntu)")
+				.extract().response().asString();
+			
+			System.out.println(response);
+			JsonPath js = new JsonPath(response);
+			String placeId = js.getString("place_id");
+			System.out.println(placeId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		System.out.println(response);
 		JsonPath js = new JsonPath(response);
 		String placeId = js.getString("place_id");
-		
 		System.out.println(placeId);
+		
 		String address1 = "70 Summmer wolk, USA";
 		String address = "I chnaged to something else";
 		
